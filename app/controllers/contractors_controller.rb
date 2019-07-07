@@ -1,0 +1,3 @@
+class ContractorsController < ApplicationController
+
+end 
