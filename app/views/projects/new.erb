@@ -1,0 +1,34 @@
+<% if logged_in? %>
+<%= @error %>
+        <h2>New PRB Project</h2>
+
+        <p>Project Information:<p>
+
+        <form action='/projects' method="post">   
+            Project Name: <input type="text" name="name">
+            <br>
+            <br>
+            Project Type: <input type="text" name="type">
+            <br>
+            <br>
+            Project Total Cost: <input type="text" name="total_cost">
+            <br> 
+            <br>
+            Project Sub Cost: <input type="text" name="sub_cost">
+            <br>
+            <br>
+            Project Subcontractors: <input type="text" name="subcontractors">
+            <br>
+            <br> 
+            Project Status: <input type="text" name="status">
+            <br>
+            <br>
+            Project Billing Status: <input type="text" name="billing_status">
+            <br>
+            <br>           
+            Create New Project: <input type="submit" value="submit">  
+        </form>
+
+  <% else %>
+      <h1> You Must Be Logged in to Create Projects </h1>
+  <% end %>
