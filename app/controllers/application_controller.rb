@@ -13,4 +13,18 @@ class ApplicationController < Sinatra::Base
     erb :home_page
   end
 
+  helpers do
+    
+    def logged_in?
+      !!current_contractor 
+    end 
+
+    def current_contractor
+      if session[:contractor_id]
+        @current_contractor = Contractor.find_by_id(session[:contractor_id]) 
+      end 
+    end 
+  end  
+
+
 end
