@@ -17,6 +17,24 @@ class ContractorsController < ApplicationController
         else 
             redirect to '/signup'
         end 
-    end  
+    end
+    
+    get '/login' do
+        if !logged_in?
+            erb :'/contractors/login'
+        else
+            redirect to '/projects'
+        end 
+    end 
 
+    post '/login' do
+        @contractor = Contractor.find_by_id(params[:contractor_id])     
+        if @contractor && @contractor.authenticate(params[:password])
+            session[:contractor_id] = @contractor.id 
+            redirect to '/projects'
+        else
+            redirect to '/login'
+        end 
+    end
+    
 end 
