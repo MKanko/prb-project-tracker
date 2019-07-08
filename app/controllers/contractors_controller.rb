@@ -36,5 +36,22 @@ class ContractorsController < ApplicationController
             redirect to '/login'
         end 
     end
+
+    get '/logout' do
+        if logged_in?
+            erb :'/contractors/logout'
+        else
+            redirect to '/login'
+        end
+    end
+ 
+    post '/logout' do
+        if logged_in?
+            session.destroy
+            redirect to '/'
+        else
+            redirect to '/login'
+        end
+    end 
     
 end 
