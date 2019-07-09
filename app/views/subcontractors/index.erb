@@ -1,2 +1,14 @@
+<h1>PRB Subcontractors</h1>
 
+    <ul>
+
+    <% @subcontractors.each do |subcontractor| %>   
+        <li><a href="/subcontractors/<%= subcontractor.id %>"><%= subcontractor.name %></a></li>
+    <% end %>
+ 
+    </ul>
+    <br>
+    <br>
+
+    <a href='/subcontractors/new'>Create New Subcontractor</a> 
     
