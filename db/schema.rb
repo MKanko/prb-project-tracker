@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190707213506) do
+ActiveRecord::Schema.define(version: 20190708230327) do
 
   create_table "contractors", force: :cascade do |t|
     t.string "username"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20190707213506) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
-    t.string "type"
     t.float  "total_cost"
     t.float  "sub_cost"
     t.string "subcontractors"
@@ -29,6 +28,7 @@ ActiveRecord::Schema.define(version: 20190707213506) do
     t.string "billing_status"
     t.string "contractor_id"
     t.string "subcontractor_id"
+    t.string "project_scope"
   end
 
   create_table "subcontractors", force: :cascade do |t|

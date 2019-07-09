@@ -1,0 +1,53 @@
+<h1>Review Project</h1>
+<br>
+
+    <h4>Project Name:</h4>
+    <%= @project.name %>
+    <br>
+    <br>
+    <h4>Scope:</h4>
+    <%= @project.project_scope %>
+    <br>
+    <br>  
+    <h4>Total Cost:</h4>
+    <%= @project.total_cost %>
+    <br>
+    <br>    
+    <h4>Subcontractor Cost:</h4>
+    <%= @project.sub_cost %>
+    <br>
+    <br>
+    <h4>Subcontractors:</h4>
+    <%= @project.subcontractors %>
+    <br>
+    <br>
+    <h4>Project Status:</h4>
+    <%= @project.status %>
+    <br>
+    <br>
+    <h4>Project Billing Status:</h4>
+    <%= @project.billing_status %>
+    <br>
+    <br>
+    <a href="/projects/<%= @project.id %>/edit">Edit Project</a>
+    <br>
+    <br>
+
+    <form action="/projects/<%= @project.id %>/delete" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete Project">
+    </form>
+    <br>
+
+    <form action="/projects" method="projects">
+        <input class="btn btn-primary" type="submit" value="Back to Projects">
+    </form>
+    <br> 
+
+    <form action="/logout" method="post">
+        <input class="btn btn-primary" type="submit" value="Log Out"> 
+    </form>
+
+
+    
+    

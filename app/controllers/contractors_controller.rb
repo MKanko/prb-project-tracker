@@ -10,10 +10,17 @@ class ContractorsController < ApplicationController
     
     post '/signup' do
         if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
-            @contractor = Contractor.new(params)
-            @contractor.save
-            session[:contractor_id] = @contractor.id
-            redirect to '/projects'
+             
+            if Contractor.all.none? { |contractor| params[:username] == contractor.username &&
+                params[:email] == contractor.email 
+            } 
+                @contractor = Contractor.new(params)
+                @contractor.save
+                session[:contractor_id] = @contractor.id
+                redirect to '/projects'
+            else
+                redirect to '/signup'
+            end                    
         else 
             redirect to '/signup'
         end 
@@ -28,7 +35,7 @@ class ContractorsController < ApplicationController
     end 
 
     post '/login' do
-        @contractor = Contractor.find_by_id(params[:contractor_id])     
+        @contractor = Contractor.find_by(:username => params[:username])       
         if @contractor && @contractor.authenticate(params[:password])
             session[:contractor_id] = @contractor.id 
             redirect to '/projects'
@@ -37,13 +44,13 @@ class ContractorsController < ApplicationController
         end 
     end
 
-    get '/logout' do
-        if logged_in?
-            erb :'/contractors/logout'
-        else
-            redirect to '/login'
-        end
-    end
+    # get '/logout' do
+    #     if logged_in?
+    #         erb :'/contractors/logout'  
+    #     else
+    #         redirect to '/login'
+    #     end
+    # end
  
     post '/logout' do
         if logged_in?
