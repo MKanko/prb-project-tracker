@@ -26,7 +26,17 @@ class SubcontractorsController < ApplicationController
             @error = "A subcontractor must have a name."
             erb :'/subcontractors/new' 
         end 
-    end 
+    end
+    
+    get '/subcontractors/:id' do
+        if logged_in?
+            @subcontractor = Subcontractor.find_by_id(params[:id])
+            erb :'/subcontractors/show'
+        else
+            redirect to '/login'
+        end
+    end  
+
 
 
 end 

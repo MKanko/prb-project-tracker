@@ -1,0 +1,43 @@
+<h1>Review Subcontractor</h1>
+<br>
+
+    <h4>Subcontractor Name:</h4>
+    <%= @subcontractor.name %>
+    <br>
+    <br>
+    <h4>Trade:</h4>
+    <%= @subcontractor.trade %>
+    <br>
+    <br>
+    <h4>Project:</h4>
+    <%= @subcontractor.project_name %>
+    <br>
+    <br>
+    <h4>Progess:</h4>
+    <%= @subcontractor.status %>
+    <br>
+    <br>
+    <h4>Payment Status:</h4>
+    <%= @subcontractor.payment_status %>
+    <br>
+    <br>
+    <a href="/subcontractors/<%= @subcontractor.id %>/edit">Edit Subcontractor</a>
+    <br>
+    <br>
+
+    <form action="/subcontractors/<%= @subcontractor.id %>/delete" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete Subcontractor">
+    </form>
+    <br>
+
+    <form action="/subcontractors" method="subcontractors">
+        <input class="btn btn-primary" type="submit" value="Back to Subcontractors">
+    </form>
+    <br> 
+
+    <form action="/logout" method="post">
+        <input class="btn btn-primary" type="submit" value="Log Out"> 
+    </form> 
+
+
