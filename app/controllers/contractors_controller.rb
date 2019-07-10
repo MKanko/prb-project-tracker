@@ -55,6 +55,7 @@ class ContractorsController < ApplicationController
     post '/logout' do
         if logged_in?
             session.destroy
+            @goodbye = "Thank you for using PRB Project Tracker." 
             redirect to '/'
         else
             redirect to '/login'

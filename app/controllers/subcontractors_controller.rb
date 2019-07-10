@@ -35,8 +35,47 @@ class SubcontractorsController < ApplicationController
         else
             redirect to '/login'
         end
-    end  
+    end
 
+    get '/subcontractors/:id/edit' do 
+        if logged_in?
+            @subcontractor = Subcontractor.find_by_id(params[:id])
+             
+            #if @subcontractor && @subcontractor.contractor == current_contractor
 
+                erb :'/subcontractors/edit'
+            #end 
+        else 
+            redirect to '/login'
+        end  
+    end 
+
+    patch '/subcontractors/:id' do       
+        @subcontractor = Subcontractor.find_by_id(params[:id])
+         
+        if params[:name] != "" && params[:trade] != "" && params[:project_name] != "" && 
+           params[:status] != "" && params[:payment_status] != ""
+
+           @subcontractor.update(name: params[:name], trade: params[:trade], project_name: params[:project_name],
+             status: params[:status], payment_status: params[:payment_status])
+             redirect to "/subcontractors/#{@subcontractor.id}"
+        else 
+            redirect to "/subcontractors/#{@subcontractor.id}/edit"
+        end 
+    end
+    
+    delete '/subcontractors/:id/delete' do 
+        if logged_in?
+            @subcontractor = Subcontractor.find_by_id(params[:id])
+
+            #if @subcontractor && @subcontractor.contractor == current_contractor
+
+                @subcontractor.delete
+                redirect '/subcontractors'   
+            #end 
+        else 
+            redirect to '/login'
+        end 
+    end
 
 end 

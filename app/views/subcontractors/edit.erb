@@ -1,0 +1,25 @@
+<%= @error %>
+
+    <h1>Edit Subcontractor:</h1>
+
+        <form action='/subcontractors/<%= @subcontractor.id %>' method='post'>
+        <input type='hidden' name='_method' value='patch'>
+
+            Subcontractor Name: <input type="text" name="name" value="<%= @subcontractor.name %>"> 
+            <br> 
+            <br>
+            Trade:  <input type="text" name="trade" value="<%= @subcontractor.trade %>">
+            <br>
+            <br>
+            Project: <input type="text" name="project_name" value="<%= @subcontractor.project_name %>"> 
+            <br>
+            <br>
+            Progress: <input type="text" name="status" value="<%= @subcontractor.status %>">
+            <br>
+            <br>
+            Payment Status: <input type="text" name="payment_status" value="<%= @subcontractor.payment_status %>">
+            <br>
+            <br>
+            <input type="submit" value="submit">
+       
+        </form>

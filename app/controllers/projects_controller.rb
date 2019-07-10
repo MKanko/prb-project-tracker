@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
     get '/projects' do
         if logged_in? 
-            @projects = Project.all 
+            @projects = current_contractor.projects    
             erb :'/projects/index'
         else 
             redirect to '/login'
@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     end
  
     post '/projects' do
-        if params[:name] != ""
+        if logged_in? && params[:name] != ""
             @project = Project.new(params)
             @project.contractor = current_contractor
             @project.save
@@ -51,9 +51,18 @@ class ProjectsController < ApplicationController
     
     patch '/projects/:id' do
         @project = Project.find_by_id(params[:id])
+
+        # @params = @project(params) 
+        # @params.each do |key, value|
+        #     if value != ""
+        #         @project.update(value)
+        #     end 
+        # end 
+       
         if params[:name] != "" && params[:project_scope] != "" && params[:total_cost] != ""
         params[:sub_cost] != "" && params[:subcontractors] != "" && params[:status] != ""
-        params[:billing_status] !="" 
+        params[:billing_status] !=""
+         
             @project.update(name: params[:name], project_scope: params[:project_scope], 
             total_cost: params[:total_cost], sub_cost: params[:sub_cost], 
             subcontractors: params[:subcontractors], status: params[:status],
